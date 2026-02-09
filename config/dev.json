@@ -1,0 +1,6 @@
+{
+    "environment": "dev",
+    "bronze_bucket_prefix": "my-lakehouse-bronze",
+    "silver_bucket_prefix": "my-lakehouse-silver",
+    "gold_bucket_prefix": "my-lakehouse-gold"
+}
