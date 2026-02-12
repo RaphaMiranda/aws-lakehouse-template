@@ -2,6 +2,11 @@
 
 This repository contains a production-ready template for building a Data Lakehouse on AWS using AWS CDK (Python). It implements a Medallion Architecture (Bronze, Silver, Gold) with Apache Iceberg and AWS Glue.
 
+## CDK Architecture
+
+![CDK Architecture](https://media2.dev.to/dynamic/image/width=800%2Cheight=%2Cfit=scale-down%2Cgravity=auto%2Cformat=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2F4mps0pxttdr8jcl2jc93.png)  
+Source: (https://dev.to/aws-builders/everything-about-aws-cdk-489m)
+
 ## Architecture
 
 ![Architecture](docs/architecture_placeholder.png)
@@ -40,6 +45,7 @@ This repository contains a production-ready template for building a Data Lakehou
 - Node.js (for CDK CLI).
 - Python 3.9+ installed.
 - Docker (optional, but recommended if building complex Lambda layers).
+- Set appropriate AWS deploy user policies [CDK_Policy](./docs/CDK_Policy.md).  
 
 ## Deployment
 
@@ -50,9 +56,11 @@ This repository contains a production-ready template for building a Data Lakehou
     pip install -r requirements.txt
     ```
 
-2.  **Bootstrap CDK** (First time only):
+2.  **Bootstrap CDK** (First time only, It will create CDKToolKit Stack):
+    
+    Includes resources needed to deploy AWS CDK apps into aws account.
     ```bash
-    cdk bootstrap
+    cdk bootstrap aws://<account-id>/<region-name>
     ```
 
 3.  **Synthesize Template**:

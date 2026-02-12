@@ -25,9 +25,14 @@ class DataLakeStorage(Construct):
         )
 
     def _create_bucket(self, layer_name: str) -> s3.Bucket:
+        # Create a more readable bucket name: lakehouse-layername-shortid
+        # self.node.addr[:8] provides a stable, unique 8-character hash for this construct
+        bucket_name = f"lakehouse-{layer_name.lower()}-{self.node.addr[:8]}"
+        
         return s3.Bucket(
             self,
-            f"{layer_name}Bucket",
+            f"{layer_name}",
+            bucket_name=bucket_name,
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,
             encryption=s3.BucketEncryption.S3_MANAGED,
             enforce_ssl=True,
